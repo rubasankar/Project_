@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from StickyNotes.api import views
 
 urlpatterns = [
     path("", views.NoteListCreate.as_view(), name="note-list"),

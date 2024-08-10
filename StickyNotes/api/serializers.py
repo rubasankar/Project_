@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import StickyNote
+from StickyNotes.models import StickyNote
 
 
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = StickyNote
         fields = ['unid', 'title', 'content',
-                  'created_at', 'colors', 'position']
+                  'created_at', 'colors', 'position', 'modified_at']

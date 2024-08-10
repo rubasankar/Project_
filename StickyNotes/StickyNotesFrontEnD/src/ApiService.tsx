@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ACCESS_TOKEN, BaseURL} from "./constants";
+import { ACCESS_TOKEN, BaseURL } from "./constants";
 
 const ApiService = {
     get: async function (url: string): Promise<any> {
@@ -28,7 +28,7 @@ const ApiService = {
         })
     },
 
-    post: async function(url: string, data:any):Promise<any>{
+    post: async function (url: string, data: any): Promise<any> {
         // console.log('post', url, data);
 
         const token = window.localStorage.getItem(ACCESS_TOKEN);
@@ -53,9 +53,62 @@ const ApiService = {
                 }))
         })
     },
+    patch: async function (url: string, data: any): Promise<any> {
+        // console.log('post', url, data);
 
-    delete: async function(url: string):Promise<any>{
-        // console.log('post', url);
+        data = JSON.stringify(data);
+        // console.log('data', data)
+
+        const token = window.localStorage.getItem(ACCESS_TOKEN);
+
+        return new Promise((resolve, reject) => {
+            fetch(`${BaseURL}${url}`, {
+                method: 'PATCH',
+                body: data,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(response => response.json())
+                .then((json) => {
+                    // console.log('Response:', json);
+
+                    resolve(json);
+                })
+                .catch((error => {
+                    reject(error);
+                }))
+        })
+    },
+    put: async function (url: string, data: any): Promise<any> {
+        // console.log('post', url, data);
+
+        const token = window.localStorage.getItem(ACCESS_TOKEN);
+
+        return new Promise((resolve, reject) => {
+            fetch(`${BaseURL}${url}`, {
+                method: 'PUT',
+                body: data,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(response => response.json())
+                .then((json) => {
+                    // console.log('Response:', json);
+
+                    resolve(json);
+                })
+                .catch((error => {
+                    reject(error);
+                }))
+        })
+    },
+
+    delete: async function (url: string): Promise<any> {
+
 
         const token = localStorage.getItem(ACCESS_TOKEN);
 
@@ -70,7 +123,7 @@ const ApiService = {
         })
     },
 
-    postWithoutToken: async function(url: string, data: any):Promise<any>{
+    postWithoutToken: async function (url: string, data: any): Promise<any> {
         // console.log('post', url, data);
 
         return new Promise((resolve, reject) => {

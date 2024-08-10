@@ -9,7 +9,7 @@ class UserAdminConfig(UserAdmin):
     model = CustomUser
 
     readonly_fields = ('uuid', 'created_at',
-                       'last_login', 'user_name', 'email')
+                       'last_login',)
     search_fields = ('email', 'user_name',)
     list_filter = ('is_active', 'is_staff', 'is_superuser')
     ordering = ('-created_at',)

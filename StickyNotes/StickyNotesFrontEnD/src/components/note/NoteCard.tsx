@@ -1,9 +1,10 @@
 import { useRef, useEffect, useState, MutableRefObject, createRef, useContext, } from "react";
-import { Note, NoteContextType } from "../types/@types.note";
+import { Note, NoteContextType } from "../../types/@types.note";
 import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
 import DeleteButton from "./DeleteButton";
-import { NoteContext } from "../context/NotesProvider";
-import Spinner from "../icons/Spinner";
+import { NoteContext } from "../../context/NotesProvider";
+import Spinner from "../../icons/Spinner";
+import { saveData } from "../../utils/utils";
 
 
 interface props {
@@ -36,7 +37,8 @@ const NoteCard = ({ note }: props) => {
     }
     const handlestop = (_e: DraggableEvent, data: DraggableData) => {
         const pos = { x: data.x, y: data.y }
-        setPosition(pos)
+        setPosition(pos);
+        saveData(note.unid,"position", pos);
     }
 
     const setZIndex = (selectedCard: HTMLDivElement | null) => {
@@ -64,20 +66,13 @@ const NoteCard = ({ note }: props) => {
             //3 - Set timer to trigger save in 2 seconds
             keyUpTimer.current = setTimeout(() => {
                 console.log('saving', saving)
-                saveData("body", textAreaRef.current?textAreaRef.current.value:"");
+                saveData(note.unid,"content", textAreaRef.current?textAreaRef.current.value:"");
+                setSaving(false);
             }, 2000);
         }
     }
 
-    const saveData = async (key:string, value:string) => {
-        const payload = { [key]: JSON.stringify(value) };
-        try {
-            console.log('saving to the db',payload)
-        } catch (error) {
-            console.error(error);
-        }
-        setSaving(false);
-    };
+  
 
 
     return (

@@ -1,6 +1,6 @@
 from rest_framework import generics
-from .serializers import UserSerializer
 from rest_framework.permissions import AllowAny
+from .serializers import UserSerializer
 from .models import CustomUser
 
 

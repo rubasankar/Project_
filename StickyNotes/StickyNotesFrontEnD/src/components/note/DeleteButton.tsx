@@ -1,8 +1,9 @@
-import Trash from "../icons/Trash";
+import Trash from "../../icons/Trash";
 import React,{ useContext } from "react";
-import { NoteContext } from "../context/NotesProvider";
-import { NoteContextType } from "../types/@types.note";
-import ApiService from "../ApiService";
+import { NoteContext } from "../../context/NotesProvider";
+import { NoteContextType } from "../../types/@types.note";
+import ApiService from "../../ApiService";
+
 
 interface props{
     noteId:string

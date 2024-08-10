@@ -1,6 +1,7 @@
-import { IconButton, Tooltip, Box } from '@mui/material';
+import { IconButton, Tooltip, Box, Menu, MenuItem } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LoginForm from './LoginForm';
+
 
 import React from 'react';
 import Modal from '@mui/material/Modal';
@@ -20,34 +21,59 @@ const style = {
 
 const DefaultProfile = () => {
     const [open, setOpen] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const openM = Boolean(anchorEl);
 
-    const handleopen = () => {
+    const handleopenLoginForm = () => {
         setOpen(true);
+        setAnchorEl(null);
     }
-    const handleClose = () => {
+    const handleCloseLoginForm = () => {
         setOpen(false);
+    };
+
+    const handleClickMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleCloseMenu = () => {
+        setAnchorEl(null);
     };
 
     return (
         <Box>
-            <Tooltip title="Login">
+            <Tooltip title="Account">
                 <IconButton
                     sx={{
                         position: "absolute",
                         top: 0,
                         right: 0,
-                        zIndex:9999,
+                        zIndex: 9999,
                     }}
 
-                    onClick={handleopen}
+                    onClick={handleClickMenu}
                 >
                     <AccountCircle color='primary' sx={{ fontSize: 40 }} />
                 </IconButton>
             </Tooltip>
+
+            <Menu
+                id="Default-profile-menu"
+                anchorEl={anchorEl}
+                open={openM}
+                onClose={handleCloseMenu}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                }}
+            >
+                <MenuItem onClick={handleopenLoginForm}>Login</MenuItem>
+                <MenuItem onClick={handleCloseMenu}>SignUp</MenuItem>
+            </Menu>
+
             <div>
                 <Modal
                     open={open}
-                    onClose={handleClose}
+                    onClose={handleCloseLoginForm}
                     aria-labelledby="parent-modal-title"
                     aria-describedby="parent-modal-description"
                 >
@@ -61,12 +87,9 @@ const DefaultProfile = () => {
                         display: "flex",
                         justifyContent: 'center',
                         alignItems: 'center',
-                        // background:'url("src/assets/background.jpg") no-repeat',
-                        // backgroundPosition:'center',
-                        // backgroundSize:'cover',
                         zIndex: 9999,
                     }}>
-                        <LoginForm/>
+                        <LoginForm />
                     </Box>
                 </Modal>
             </div>

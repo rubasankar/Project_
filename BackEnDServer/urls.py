@@ -23,6 +23,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('UserAccounts.urls')),
-    path('notes/', include('StickyNotes.urls')),
+    path('notes/', include('StickyNotes.api.urls')),
     path('', TemplateView.as_view(template_name="index.html")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

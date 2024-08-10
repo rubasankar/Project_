@@ -1,9 +1,8 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from .serializers import NoteSerializer
-from .models import StickyNote
+from rest_framework.permissions import IsAuthenticated
+from StickyNotes.models import StickyNote
+from StickyNotes.api.serializers import NoteSerializer
 
-# Create your views here.
 
 
 class NoteListCreate(generics.ListCreateAPIView):
@@ -11,8 +10,7 @@ class NoteListCreate(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
-        return StickyNote.objects.filter(author=user)
+        return StickyNote.objects.filter(author=self.request.user)
 
     def perform_create(self, serializer):
         if serializer.is_valid():
@@ -30,9 +28,9 @@ class NoteDelete(generics.DestroyAPIView):
         return StickyNote.objects.filter(author=self.request.user)
 
 
-class NoteUpdate(generics.UpdateAPIView):
+class NoteUpdate(generics.RetrieveUpdateAPIView):
     serializer_class = NoteSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return StickyNote.objects.get()
+        return StickyNote.objects.filter(author=self.request.user)

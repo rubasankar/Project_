@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import Controls from "../components/Control";
-import NoteCard from "../components/NoteCard";
+import Controls from "../components/note/Control";
+import NoteCard from "../components/note/NoteCard";
 import { NoteContext } from "../context/NotesProvider";
 import { NoteContextType } from "../types/@types.note";
-import DefaultProfile from "../auth/DefaultProfile";
-import LoggedInProfile from "../auth/LoggedInProfile";
+import DefaultProfile from "../components/auth/DefaultProfile";
+import LoggedInProfile from "../components/auth/LoggedInProfile";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import { jwtDecode } from "jwt-decode";
 import ApiService from "../ApiService";

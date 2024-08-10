@@ -1,8 +1,8 @@
 import { useState, useContext, FormEvent, ChangeEvent } from 'react';
-import { ACCESS_TOKEN, REFRESH_TOKEN, BaseURL } from '../constants';
-import { NoteContext } from '../context/NotesProvider';
-import { NoteContextType } from '../types/@types.note';
-import ApiService from '../ApiService';
+import { ACCESS_TOKEN, REFRESH_TOKEN, BaseURL } from '../../constants';
+import { NoteContext } from '../../context/NotesProvider';
+import { NoteContextType } from '../../types/@types.note';
+import ApiService from '../../ApiService';
 import './css/Login.css'
 
 

@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { NoteContextType, Tcolor } from "../types/@types.note";
-import { NoteContext } from "../context/NotesProvider";
+import { NoteContextType, Tcolor } from "../../types/@types.note";
+import { NoteContext } from "../../context/NotesProvider";
+import { saveData } from "../../utils/utils";
 
 interface props {
     color: Tcolor,
@@ -8,7 +9,7 @@ interface props {
 
 
 const Color = ({color}:props) => {
-    const {notes,setNotes, selectedNote } = useContext(NoteContext) as NoteContextType;
+    const {notes,setNotes, selectedNote,isAuthorized } = useContext(NoteContext) as NoteContextType;
 
     const changeColor = () => {
 
@@ -25,6 +26,7 @@ const Color = ({color}:props) => {
             const newNotes = [...notes];
             newNotes[currentNoteIndex] = updatedNote;
             setNotes(newNotes);
+            isAuthorized?saveData(selectedNote.unid,"colors",color):{}
 
         } catch (error) {
             alert("You must select a note before changing colors");

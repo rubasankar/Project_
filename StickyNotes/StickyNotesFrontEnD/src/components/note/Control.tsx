@@ -1,4 +1,4 @@
-import colors from '../assets/colors.json';
+import colors from '../../assets/colors.json';
 import Color from "./Colors";
 import AddButton from "./AddButton"
  

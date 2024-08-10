@@ -17,7 +17,7 @@ class StickyNote(models.Model):
     position = models.JSONField(verbose_name='Position')
     created_at = models.DateTimeField(
         verbose_name='Created At', auto_now_add=True)
-    edited_at = models.DateTimeField(verbose_name="Edited At", auto_now=True)
+    modified_at = models.DateTimeField(verbose_name="Modified At", auto_now=True)
 
     class Meta:
         """ Meta class for Sticky Note Model"""

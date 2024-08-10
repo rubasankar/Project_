@@ -1,9 +1,9 @@
-import Plus from "../icons/Plus";
 import { useContext, useRef } from "react";
-import { NoteContext } from "../context/NotesProvider";
-import { NoteContextType } from "../types/@types.note";
-import colors from "../assets/colors.json"
-import ApiService from "../ApiService";
+import { NoteContext } from "../../context/NotesProvider";
+import { NoteContextType } from "../../types/@types.note";
+import colors from "../../assets/colors.json"
+import ApiService from "../../ApiService";
+import Plus from "../../icons/Plus";
 
 const AddButton = () => {
     const startingPos = useRef(10);
