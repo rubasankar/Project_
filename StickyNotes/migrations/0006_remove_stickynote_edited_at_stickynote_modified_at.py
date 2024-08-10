@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='stickynote',
             name='modified_at',
-            field=models.DateTimeField(auto_now=True, 
+            field=models.DateTimeField(auto_now=True,
                                        verbose_name='Modified At'),
         ),
     ]
